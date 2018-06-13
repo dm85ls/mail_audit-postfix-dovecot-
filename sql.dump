@@ -1,0 +1,36 @@
+CREATE DATABASE audit;
+
+GRANT SELECT,INSERT,UPDATE ON audit.* TO audit@localhost IDENTIFIED BY 'passpass';
+
+USE audit;
+
+CREATE TABLE `dovecot` (
+`logdate` datetime NOT NULL default '0000-00-00 00:00:00',
+`email` varchar(80) NOT NULL default '',
+`ip` varchar(20) NOT NULL default '',
+`pass` varchar(80) NOT NULL default '',
+`auth` boolean NOT NULL default 0
+);
+
+CREATE TABLE `postfix` (
+`logdate` datetime NOT NULL default '0000-00-00 00:00:00',
+`stopdate` datetime NOT NULL default '0000-00-00 00:00:00',
+`id` varchar(20) NOT NULL default '',
+`id2` varchar(20) NOT NULL default '',
+`msgid` varchar(255) NOT NULL default '',
+`frommail` varchar(80) NOT NULL default '',
+`tomail` varchar(1024) NOT NULL default '',
+`orig_to` varchar(80) NOT NULL default '',
+`ip` varchar(20) NOT NULL default '',
+`ip2` varchar(20) NOT NULL default '',
+`user` varchar(80) NOT NULL default '',
+`status` varchar(1024) NOT NULL default ''
+);
+
+CREATE TABLE `reject` (
+`logdate` datetime NOT NULL default '0000-00-00 00:00:00',
+`frommail` varchar(80) NOT NULL default '',
+`tomail` varchar(80) NOT NULL default '',
+`ip` varchar(20) NOT NULL default '',
+`event` varchar(512) NOT NULL default ''
+);
